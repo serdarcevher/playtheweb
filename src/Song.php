@@ -112,7 +112,7 @@ class Song {
 
             $this->composition[] = [
                 'word' => $element['class'],
-                'frequence' => $note,
+                'frequence' => $frequence,
                 'duration' => $element['length'] * $this->tempo,
                 'waitFor' => $this->duration
             ];
