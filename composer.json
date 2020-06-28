@@ -1,0 +1,24 @@
+{
+    "name": "sahtepetrucci/playtheweb",
+    "type": "library",
+    "description": "Semi-random, unique music generator using HTML source codes",
+    "keywords": ["music","generator","random","html","php"],
+    "homepage": "https://github.com/sahtepetrucci/playtheweb",
+    "license": "MIT",
+        "authors": [
+        {
+            "name": "Serdar Cevher",
+            "email": "scevher@gmail.com",
+            "homepage": "https://www.serdarcevher.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sahtepetrucci\\PlayTheWeb\\": "src"
+        }
+    }
+}
