@@ -104,8 +104,7 @@ class Song {
 
         foreach ($this->body['elements'] as $element):
             $i++;
-
-            $note = $this->data->notes[$element['index']];
+            $note = $this->scale[$element['index']] ?? $this->scale[0];
             $frequence = $i % $rest == 0 ? 0 : $this->data->frequences[$note];
             $duration = $element['length'] * $this->tempo;
             $this->duration += $duration;
@@ -121,7 +120,7 @@ class Song {
 
         $this->duration+=1000;
 
-        unset($this->body);
+        //unset($this->body);
 
     }
 }

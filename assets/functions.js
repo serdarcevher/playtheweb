@@ -1,83 +1,75 @@
 let ctx;
-let oscillator;
 let gainNode;
+let oscillator;
+let oscillatorPedal;
 let musicContainer = document.getElementById('music-container');
 
-let timeouts = [];
 let isPlaying = false;
 let startButton = document.getElementById('start');
 let stopButton = document.getElementById('stop');
 
-function startPlaying(song) {
+const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+
+function prepareAudioContext() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     ctx = new AudioContext();
-    oscillator = ctx.createOscillator();
-    gainNode = ctx.createGain();
+}
 
-    oscillator.connect(gainNode);
-    gainNode.connect(ctx.destination);
-    gainNode.gain.value = 0.1;
-    oscillator.type = 'sine';
-
-    oscillator.frequency.value = 440;
-    oscillator.start(0);
+async function startPlaying(song) {
+    
+    prepareAudioContext();
     //oscillator.connect(ctx.destination);
 
-    setTimeout(function(){
-        oscillator.stop(0);
-    },1000);
-
-    stopButton.style.display = 'block';
+    document.getElementById('music-container').innerHTML = '';
+    document.getElementById('mode-info').innerHTML = song.tone + ' ' + song.mode;
+    stopButton.style.display = 'inline-block';
     startButton.style.display = "none";
     isPlaying = true;
-    let i = 0;
 
-    song.composition.forEach(element => {
+    await waitFor(500);
 
-        timeouts[i] = setTimeout(function(){
+    for (let element of song.composition) {
 
-            if (isPlaying) {
-                let item = "<div class=\"item\" style=\"width: " + element.duration + "\">" + element.word + "</div>";
-                musicContainer.innerHTML+= item;
-
-                musicContainer.scrollTop = musicContainer.scrollHeight;
-
-                /*
-                oscillator.stop(0);
-                oscillator.frequency.value = element.frequency;
-                oscillator.start(0);
-                */      
-            }
-
-        }, element.waitFor);
-
-        //console.log(i + ' added');
-        i++;
-        //console.log(element);
-    });
+        if (isPlaying) {
+            play(song, element);
+            await waitFor(element.duration);
+            oscillator.disconnect(0);
+        }
+        oscillatorPedal.disconnect(0);
+    }
 }
+
+function play(song, element) {
+    gainNode = ctx.createGain();
+    gainNode.gain.value = 0.2;
+    gainNode.connect(ctx.destination);
+
+    oscillator = ctx.createOscillator();
+    oscillator.type = "sine";
+    oscillator.connect(gainNode);
+
+    oscillatorPedal = ctx.createOscillator();
+    oscillatorPedal.type = "sine";
+    oscillatorPedal.connect(gainNode);
+
+    oscillator.frequency.value = element.frequence;
+    oscillatorPedal.frequency.value = song.pedal;
+    oscillator.start(0);
+    oscillatorPedal.start(0);
+
+    console.log(element.frequence);
+
+    let item = "<div class=\"item\" style=\"width: " + element.duration + "\">" + element.word + "</div>";
+    musicContainer.innerHTML+= item;
+    musicContainer.scrollTop = musicContainer.scrollHeight;
+}
+
 
 function stopPlaying() {
     oscillator.stop();
-
+    oscillatorPedal.stop();
     isPlaying = false;
-    clearTimeouts();
-    document.getElementById('music-container').innerHTML = '';
-
     stopButton.style.display = 'none';
-    startButton.style.display = "block";
-}
-
-async function play(item) {
-
-}
-
-function clearTimeouts() {
-    timeouts.forEach(timeout => {
-        clearTimeout(timeouts[timeout]);
-    });
-}
-
-function toggleButtons() {
-
+    startButton.style.display = "inline-block";
+    document.getElementById('mode-info').innerHTML = '';
 }

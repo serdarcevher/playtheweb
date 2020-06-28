@@ -1,0 +1,39 @@
+body {
+    font-family: 'Georgia';
+}
+
+#container {
+    position:relative;
+    width:75%;
+    margin:0 auto;
+    margin-top:5%;
+}
+
+#music-container {
+    width:100%;
+    height:50%;
+    background-color:gray;
+    overflow-y:scroll;
+    padding:5px;
+    border:5px solid black;
+}
+
+.item { 
+    background: rgb(56,193,114);
+    background: linear-gradient(90deg, rgba(56,193,114,1) 0%, rgba(56,193,114,1) 15%, rgba(255,179,20,1) 40%, rgba(235,1,23,1) 100%);
+
+    color:white; 
+    padding:5px; 
+    margin-top:2px; 
+    font-size:11px; 
+}
+
+.actionButton {
+    margin-top:20px;
+    padding:10px;
+    font-size:18px;
+}
+
+#stop {
+    display:none;
+}

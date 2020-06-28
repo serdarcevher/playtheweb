@@ -29,9 +29,7 @@ class Handler {
         $this->song->scale = $this->musicTheory->getScaleByName($this->song->tone, $this->song->mode);
         $this->song->createComposition();
 
-        echo "<pre>";
-        print_r($this->song);
-        echo "</pre>";
+        return $this->song;
     }
 
     public function getMostPopularClassNamesFrom($content) {
@@ -52,5 +50,6 @@ class Handler {
         if ($mode && in_array($mode, $this->data->modes)) {
             $this->song->mode = $mode;
         }
+
     }
 }
