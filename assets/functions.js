@@ -52,12 +52,10 @@ function play(song, element) {
     oscillatorPedal.type = "sine";
     oscillatorPedal.connect(gainNode);
 
-    oscillator.frequency.value = element.frequence;
+    oscillator.frequency.value = element.frequency;
     oscillatorPedal.frequency.value = song.pedal;
     oscillator.start(0);
     oscillatorPedal.start(0);
-
-    console.log(element.frequence);
 
     let item = "<div class=\"item\" style=\"width: " + element.duration + "\">" + element.word + "</div>";
     musicContainer.innerHTML+= item;

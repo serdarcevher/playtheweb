@@ -5,15 +5,15 @@ class Data {
     
     public $notes;
     public $modes;
-    public $frequences;
+    public $frequencies;
 
     public function __construct() {
         $this->notes = ["C","D","E","F","G","A","B"];
-        $this->frequences = $this->getFrequences();
+        $this->frequencies = $this->getFrequencies();
         $this->modes = $this->getModes();
     }
 
-    public function getFrequences() {
+    public function getFrequencies() {
         return [
             "C" => "523.28",
             "C#" => "554.40",

@@ -88,7 +88,7 @@ class Song {
     }
 
     public function determinePedalPoint() {
-        $this->pedal = $this->data->frequences[$this->tone] / 2;
+        $this->pedal = $this->data->frequencies[$this->tone] / 2;
     }
 
     public function createComposition() {
@@ -105,13 +105,13 @@ class Song {
         foreach ($this->body['elements'] as $element):
             $i++;
             $note = $this->scale[$element['index']] ?? $this->scale[0];
-            $frequence = $i % $rest == 0 ? 0 : $this->data->frequences[$note];
+            $frequency = $i % $rest == 0 ? 0 : $this->data->frequencies[$note];
             $duration = $element['length'] * $this->tempo;
             $this->duration += $duration;
 
             $this->composition[] = [
                 'word' => $element['class'],
-                'frequence' => $frequence,
+                'frequency' => $frequency,
                 'duration' => $element['length'] * $this->tempo,
                 'waitFor' => $this->duration
             ];
