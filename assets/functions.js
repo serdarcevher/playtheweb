@@ -24,19 +24,31 @@ function calculateSizes() {
     maxDuration = Math.max(...song.composition.map(x => x.duration));
     itemWidthMultiplier = musicContainerWidth / maxDuration;
 
+    totalTime = Math.round(song.composition[song.composition.length-1].waitFor / 1000);
+
+
     console.log(musicContainerWidth + " (music container width)");
     console.log(maxDuration + " (max duration in ms)");
     console.log(itemWidthMultiplier + "(item width multiplier)");
+}
+
+function displayMeta(song) {
+    document.getElementById('mode-selector').value = song.mode;
+    document.getElementById('tone-selector').value = song.tone;
+    document.getElementById('song-info').innerHTML = song.tone + ' ' + song.mode;
+    document.getElementById('total-time-span').innerHTML = pad(parseInt(totalTime/60)) + ':' + pad(totalTime%60);
 }
 
 async function startPlaying(song) {
 
     prepareAudioContext();
     calculateSizes();
+    displayMeta(song);
+
+    timeInterval = setInterval(setTime, 1000);
     //oscillator.connect(ctx.destination);
 
     document.getElementById('music-container').innerHTML = '';
-    document.getElementById('mode-info').innerHTML = song.tone + ' ' + song.mode;
     stopButton.style.display = 'inline-block';
     startButton.style.display = "none";
     isPlaying = true;
@@ -86,5 +98,7 @@ function stopPlaying() {
     isPlaying = false;
     stopButton.style.display = 'none';
     startButton.style.display = "inline-block";
-    document.getElementById('mode-info').innerHTML = '';
+    document.getElementById('song-info').innerHTML = '';
+
+    resetTime();
 }

@@ -8,7 +8,7 @@ use Sahtepetrucci\PlayTheWeb\Song;
 class Handler {
 
     private $musicTheory;
-    private $data;
+    public $data;
     public $song;
 
     public function __construct() {

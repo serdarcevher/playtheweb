@@ -36,10 +36,22 @@ h3 { font-size: 16px; }
     height:50%;
     background-color:#1A1A1A;
     overflow-y:scroll;
+    margin-top:10px;
+    box-sizing:border-box;
     padding:2px;
     border:1px solid black;
 }
 
+.selector {
+    padding:7px;
+    margin:10px 10px 0 0;
+}
+
+#source {
+    padding:7px;
+    font-size:14px;
+    width:100%;
+}
 
 .item { 
     white-space: nowrap;
@@ -52,12 +64,20 @@ h3 { font-size: 16px; }
     transition: width 0.1s linear;
 }
 
-.actionButton {
-    margin-top:20px;
+.action-button {
+    margin:20px 10px 20px 0;
     padding:10px;
     font-size:18px;
 }
 
+#song-state {
+    display:inline-block;
+}
+#song-info {
+    display:inline-block;
+    margin:10px 0 0 10px;
+    white-space: nowrap;
+}
 #stop {
     display:none;
 }
