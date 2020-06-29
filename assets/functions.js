@@ -17,6 +17,10 @@ const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
 function prepareAudioContext() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     ctx = new AudioContext();
+
+    gainNode = ctx.createGain();
+    gainNode.gain.value = 0.3;
+    gainNode.connect(ctx.destination);
 }
 
 function calculateSizes() {
@@ -67,10 +71,6 @@ async function startPlaying(song) {
 }
 
 function play(song, element) {
-    gainNode = ctx.createGain();
-    gainNode.gain.value = 0.2;
-    gainNode.connect(ctx.destination);
-
     oscillator = ctx.createOscillator();
     oscillator.type = "sine";
     oscillator.connect(gainNode);
@@ -101,4 +101,9 @@ function stopPlaying() {
     document.getElementById('song-info').innerHTML = '';
 
     resetTime();
+}
+
+function handleGainChange(value) {
+    console.log(value);
+    gainNode.gain.value = value;
 }

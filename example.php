@@ -50,6 +50,7 @@ $song = $handler->run();
                 <span id="total-time-span">00:00</span>
             </div>
 
+            <input type="range" min="0" max="1" step="0.1" value="0.3" class="slider" id="gainRange" onChange="handleGainChange(this.value)" />
         </div>
 
     </div>
