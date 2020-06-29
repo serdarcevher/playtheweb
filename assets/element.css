@@ -1,9 +1,9 @@
 .note-c { background-color: #00db2d; }
 .note-c-sharp { background-color: #00f7a3; }
 .note-d { background-color: #005fec; }
-.note-d-sharp { background-color: #210ce7; }
+.note-d-sharp { background-color: #210ce7; color:silver !important; }
 .note-e { background-color: #750abc; }
-.note-f { background-color: #3a0448; }
+.note-f { background-color: #3a0448; color: silver !important; }
 .note-f-sharp { background-color: #5d0a3e; }
 .note-g { background-color: #d80319; }
 .note-g-sharp { background-color: #e6371b; }
