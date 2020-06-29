@@ -9,7 +9,9 @@ function setTime()
 {
     ++totalSeconds;
     if(totalSeconds == totalTime) {
-        clearInterval(timeInterval);
+        stopPlaying();
+        resetToneAndMode();
+        //clearInterval(timeInterval);
     }
     secondsLabel.innerHTML = pad(totalSeconds%60);
     minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));

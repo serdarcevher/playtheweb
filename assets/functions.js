@@ -1,18 +1,63 @@
+let song;
 let ctx;
 let gainNode;
 let oscillator;
 let oscillatorPedal;
 
+let loadingHTML = '<div id="loading" class="spinner">\
+                    <div class="rect1"></div>\
+                    <div class="rect2"></div>\
+                    <div class="rect3"></div>\
+                    <div class="rect4"></div>\
+                    <div class="rect5"></div>\
+                </div>';
 let musicContainer = document.getElementById('music-container');
 let musicContainerWidth = 10;
 let maxDuration = 1;
 let itemWidthMultiplier = 1;
 
+let userInputs = document.querySelectorAll('input, button, select');
 let isPlaying = false;
 let startButton = document.getElementById('start');
 let stopButton = document.getElementById('stop');
 
 const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+
+async function loadSong(url) {    
+    loading(true);
+    prepareAudioContext();
+    await waitFor(500);
+
+    return new Promise(function(resolve, reject) {
+
+        let data = {
+            'url': url,
+            'tone': document.getElementById('tone-selector').value,
+            'mode': document.getElementById('mode-selector').value
+        };
+
+        fetch('load.php', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json()) // parse response as JSON (can be res.text() for plain response)
+        .then(response => {
+            // here you do what you want with response
+            song = response;
+            resolve();
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Sorry, something went wrong!")
+            loading(false);
+            stopPlaying();
+            reject();
+        });
+    });
+}
 
 function prepareAudioContext() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -43,9 +88,16 @@ function displayMeta(song) {
     document.getElementById('total-time-span').innerHTML = pad(parseInt(totalTime/60)) + ':' + pad(totalTime%60);
 }
 
-async function startPlaying(song) {
+async function startPlaying() {
+    let url = encodeURIComponent(document.getElementById('source').value);
+    if (!url) {
+        alert('You have to enter a URL');
+        return;
+    }
 
-    prepareAudioContext();
+    await loadSong(url);
+    loading(false);
+
     calculateSizes();
     displayMeta(song);
 
@@ -56,8 +108,6 @@ async function startPlaying(song) {
     stopButton.style.display = 'inline-block';
     startButton.style.display = "none";
     isPlaying = true;
-
-    await waitFor(500);
 
     for (let element of song.composition) {
 
@@ -103,7 +153,24 @@ function stopPlaying() {
     resetTime();
 }
 
+function resetToneAndMode() {
+    document.getElementById('tone-selector').value = '';
+    document.getElementById('mode-selector').value = '';
+}
+
 function handleGainChange(value) {
     console.log(value);
     gainNode.gain.value = value;
+}
+
+function loading(bool) {
+    userCanInteract(!bool);
+    musicContainer.innerHTML = '';
+    if (bool) {
+        musicContainer.innerHTML = loadingHTML;
+    }
+}
+
+function userCanInteract(bool) {
+    userInputs.forEach(x => x.disabled = !bool);
 }

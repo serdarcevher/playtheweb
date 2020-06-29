@@ -17,10 +17,9 @@ class Handler {
         $this->song = new Song();
     }
 
-    public function run($tone = null, $mode = null)
+    public function run($content, $tone = null, $mode = null)
     {
-        $html = file_get_contents(__DIR__ . '/../samples/facebook_sample.html');
-        $classNames = $this->getMostPopularClassNamesFrom($html);
+        $classNames = $this->getMostPopularClassNamesFrom($content);
         
         $this->song->generateFrom($classNames);
         $this->applyOverrides($tone, $mode);
