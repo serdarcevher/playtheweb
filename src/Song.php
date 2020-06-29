@@ -112,6 +112,7 @@ class Song {
             $this->composition[] = [
                 'word' => $element['class'],
                 'frequency' => $frequency,
+                'class' => $frequency == 0 ? 'note-rest' : $this->getNoteClass($note),
                 'duration' => $element['length'] * $this->tempo,
                 'waitFor' => $this->duration
             ];
@@ -122,5 +123,9 @@ class Song {
 
         //unset($this->body);
 
+    }
+
+    public function getNoteClass($note) {
+        return "note-" . strtolower(str_replace("#", "-sharp", $note));
     }
 }

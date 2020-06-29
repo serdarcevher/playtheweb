@@ -2,7 +2,11 @@ let ctx;
 let gainNode;
 let oscillator;
 let oscillatorPedal;
+
 let musicContainer = document.getElementById('music-container');
+let musicContainerWidth = 10;
+let maxDuration = 1;
+let itemWidthMultiplier = 1;
 
 let isPlaying = false;
 let startButton = document.getElementById('start');
@@ -15,9 +19,20 @@ function prepareAudioContext() {
     ctx = new AudioContext();
 }
 
+function calculateSizes() {
+    musicContainerWidth = musicContainer.offsetWidth;
+    maxDuration = Math.max(...song.composition.map(x => x.duration));
+    itemWidthMultiplier = musicContainerWidth / maxDuration;
+
+    console.log(musicContainerWidth + " (music container width)");
+    console.log(maxDuration + " (max duration in ms)");
+    console.log(itemWidthMultiplier + "(item width multiplier)");
+}
+
 async function startPlaying(song) {
-    
+
     prepareAudioContext();
+    calculateSizes();
     //oscillator.connect(ctx.destination);
 
     document.getElementById('music-container').innerHTML = '';
@@ -57,9 +72,11 @@ function play(song, element) {
     oscillator.start(0);
     oscillatorPedal.start(0);
 
-    let item = "<div class=\"item\" style=\"width: " + element.duration + "\">" + element.word + "</div>";
+    let item = "<div id=\"item-" + element.word + "\" class=\"item " + element.class + "\" style=\"transition-duration: " + element.duration + "ms\">" + element.word + "</div>";
     musicContainer.innerHTML+= item;
     musicContainer.scrollTop = musicContainer.scrollHeight;
+
+    document.getElementById('item-'+element.word).style.width = (Math.round(itemWidthMultiplier * element.duration) - 20) + 'px';
 }
 
 
