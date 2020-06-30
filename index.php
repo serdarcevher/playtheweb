@@ -8,7 +8,7 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1.0">
-    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=3">
+    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=4">
     <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
@@ -34,6 +34,8 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
             <div style="display:inline-block">
                 <button type="submit" id="start" class="action-button" onClick="startPlaying()">Play</button>
                 <button type="button" id="stop" class="action-button" onClick="stopPlaying()">Stop</button>
+
+                <button type="button" id="random" class="action-button" onClick="playRandomSite()">Random Site</button>
             </div>
 
             <div id="music-container"></div>
@@ -86,8 +88,9 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 </body>
 <script>
     let base = '<?=$base?>';
+    let urls = <?=json_encode($handler->data->urls)?>;
 </script>
 <script src="<?=$base?>assets/time.js"></script>
-<script src="<?=$base?>assets/functions.js?v=2"></script>
+<script src="<?=$base?>assets/functions.js?v=3"></script>
 <script src="<?=$base?>assets/awesomplete.min.js"></script>
 </html>

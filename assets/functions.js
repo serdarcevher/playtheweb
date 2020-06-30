@@ -174,3 +174,13 @@ function loading(bool) {
 function userCanInteract(bool) {
     userInputs.forEach(x => x.disabled = !bool);
 }
+
+function playRandomSite() {
+    if (isPlaying) {
+        stopPlaying();
+    }
+
+    let site = urls[Math.floor(Math.random() * urls.length)];
+    document.getElementById('source').value = site;
+    startPlaying();
+}

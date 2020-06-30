@@ -51,7 +51,11 @@ h3 { font-size: 100%; }
     padding:7px;
     margin:0 10px 10px 0;
     height:35px;
-    width:45%;
+    width:41%;
+}
+
+#mode-selector {
+    width:50%;
 }
 
 #source {
@@ -99,6 +103,11 @@ h3 { font-size: 100%; }
 #stop {
     display:none;
     background-color:red;
+}
+
+#random {
+    color:black;
+    background-color:silver;
 }
 
 .awesomplete {

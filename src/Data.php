@@ -69,7 +69,10 @@ class Data {
             'microsoft.com',
             'aoc.com',
             'ikea.com',
-            'samsung.com'
+            'facebook.com',
+            'twitter.com',
+            'samsung.com',
+            'mi.com',
         ];
     }
 }
