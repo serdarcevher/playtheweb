@@ -5,10 +5,12 @@ use Sahtepetrucci\PlayTheWeb\Handler;
 $handler = new Handler();
 $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/';
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <title>PlayTheWeb - Hear the sound of web!</title>
     <meta name="viewport" content="initial-scale=1.0">
-    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=4">
+    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=5">
     <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
@@ -25,7 +27,6 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
                    type="text" 
                    placeholder="Enter any URL (e.g. google.com)" 
                    value=""
-                   autocorrect="off" 
                    autocapitalize="none"
                    data-minchars="1" 
                    data-list="<?=implode(",", $handler->data->urls)?>"
@@ -85,7 +86,6 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 
     </div>
 
-</body>
 <script>
     let base = '<?=$base?>';
     let urls = <?=json_encode($handler->data->urls)?>;
@@ -93,4 +93,6 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 <script src="<?=$base?>assets/time.js"></script>
 <script src="<?=$base?>assets/functions.js?v=3"></script>
 <script src="<?=$base?>assets/awesomplete.min.js"></script>
+
+</body>
 </html>
