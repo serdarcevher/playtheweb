@@ -3,12 +3,13 @@ require_once('init.php');
 
 use Sahtepetrucci\PlayTheWeb\Handler;
 $handler = new Handler();
+$base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/';
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="assets/element.css">
-    <link rel="stylesheet" href="assets/spinners.css">
-    <link rel="stylesheet" href="assets/awesomplete.css">
+    <link rel="stylesheet" href="<?=$base?>assets/element.css">
+    <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
+    <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
 <body>
     <div id="container">
@@ -73,7 +74,7 @@ $handler = new Handler();
     </div>
 
 </body>
-<script src="assets/time.js"></script>
-<script src="assets/functions.js"></script>
-<script src="assets/awesomplete.min.js"></script>
+<script src="<?=$base?>assets/time.js"></script>
+<script src="<?=$base?>assets/functions.js"></script>
+<script src="<?=$base?>assets/awesomplete.min.js"></script>
 </html>
