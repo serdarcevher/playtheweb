@@ -36,7 +36,7 @@ async function loadSong(url) {
             'mode': document.getElementById('mode-selector').value
         };
 
-        fetch('load.php', { 
+        fetch(base + 'load.php', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -7,7 +7,8 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="<?=$base?>assets/element.css">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=2">
     <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
@@ -22,15 +23,18 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 
             <input id="source" class="awesomplete" 
                    type="text" 
-                   placeholder="Enter any publicly available web page URL" 
+                   placeholder="Enter any URL (e.g. google.com)" 
                    value=""
+                   autocorrect="off" 
+                   autocapitalize="none"
                    data-minchars="1" 
                    data-list="<?=implode(",", $handler->data->urls)?>"
                    />
 
             <div style="display:inline-block">
                 <select id="tone-selector" class="selector" name="tone">
-                    <option value="">Automatic Tone Selection</option>
+                    <option value="">Select Tone</option>
+                    <option value="">Automatic</option>
                     <?php
                     foreach ($handler->data->notes as $note):
                         ?><option value="<?=$note?>"><?=$note?></option><?php
@@ -39,7 +43,8 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
                 </select>
 
                 <select id="mode-selector" class="selector" name="mode">
-                    <option value="">Automatic Mode Selection</option>
+                    <option value="">Select Mode</option>
+                    <option value="">Automatic</option>
                     <?php
                     foreach ($handler->data->modes as $mode):
                         ?><option value="<?=$mode?>"><?=$mode?></option><?php
@@ -74,6 +79,9 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
     </div>
 
 </body>
+<script>
+    let base = '<?=$base?>';
+</script>
 <script src="<?=$base?>assets/time.js"></script>
 <script src="<?=$base?>assets/functions.js"></script>
 <script src="<?=$base?>assets/awesomplete.min.js"></script>

@@ -6,6 +6,7 @@ $rest_json = file_get_contents("php://input");
 $data = json_decode($rest_json, true);
 $url = urldecode($data['url']);
 
+$url = strtolower($url);
 $url = str_replace("https://", "", $url);
 $url = str_replace("http://", "", $url);
 $url = rtrim(trim($url), "/");
