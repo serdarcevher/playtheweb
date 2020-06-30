@@ -8,7 +8,7 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1.0">
-    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=2">
+    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=3">
     <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
@@ -32,36 +32,13 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
                    />
 
             <div style="display:inline-block">
-                <select id="tone-selector" class="selector" name="tone">
-                    <option value="">Select Tone</option>
-                    <option value="">Automatic</option>
-                    <?php
-                    foreach ($handler->data->notes as $note):
-                        ?><option value="<?=$note?>"><?=$note?></option><?php
-                    endforeach;
-                    ?>
-                </select>
-
-                <select id="mode-selector" class="selector" name="mode">
-                    <option value="">Select Mode</option>
-                    <option value="">Automatic</option>
-                    <?php
-                    foreach ($handler->data->modes as $mode):
-                        ?><option value="<?=$mode?>"><?=$mode?></option><?php
-                    endforeach;
-                    ?>
-                </select>
-            </div>
-
-            <div style="font-style:italic;font-size:13px;">
-                Generated composition <span style="color:green">will be the same</span> as long as the inputted site's <span style="color:green">code remains the same.</span>
+                <button type="submit" id="start" class="action-button" onClick="startPlaying()">Play</button>
+                <button type="button" id="stop" class="action-button" onClick="stopPlaying()">Stop</button>
             </div>
 
             <div id="music-container"></div>
 
-            <button type="submit" id="start" class="action-button" onClick="startPlaying()">Start Playing</button>
-            <button type="button" id="stop" class="action-button" onClick="stopPlaying()">Stop Playing</button>
-            <div style="display:inline-block;">
+            <div style="display:inline-block;margin-top:10px;">
 
                 <div id="song-state">
 
@@ -74,6 +51,34 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
                 <input type="range" min="0" max="1" step="0.1" value="0.3" class="slider" id="gainRange" onChange="handleGainChange(this.value)" />
             </div>
 
+            <div style="display:inline-block;margin-top:10px;">
+                <select id="tone-selector" class="selector" name="tone">
+                    <option value="">Change Tone</option>
+                    <option value="">Auto</option>
+                    <?php
+                    foreach ($handler->data->notes as $note):
+                        ?><option value="<?=$note?>"><?=$note?></option><?php
+                    endforeach;
+                    ?>
+                </select>
+
+                <select id="mode-selector" class="selector" name="mode">
+                    <option value="">Change Mode</option>
+                    <option value="">Auto</option>
+                    <?php
+                    foreach ($handler->data->modes as $mode):
+                        ?><option value="<?=$mode?>"><?=$mode?></option><?php
+                    endforeach;
+                    ?>
+                </select>
+            </div>
+
+            <br /><br />
+
+            <div style="font-style:italic;font-size:13px;">
+                Generated composition <span style="color:green">will be the same</span> as long as the inputted site's <span style="color:green">code remains the same.</span>
+            </div>
+
         </form>
 
     </div>
@@ -83,6 +88,6 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
     let base = '<?=$base?>';
 </script>
 <script src="<?=$base?>assets/time.js"></script>
-<script src="<?=$base?>assets/functions.js"></script>
+<script src="<?=$base?>assets/functions.js?v=2"></script>
 <script src="<?=$base?>assets/awesomplete.min.js"></script>
 </html>
