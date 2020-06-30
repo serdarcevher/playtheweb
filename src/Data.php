@@ -6,11 +6,13 @@ class Data {
     public $notes;
     public $modes;
     public $frequencies;
+    public $urls;
 
     public function __construct() {
         $this->notes = ["C","D","E","F","G","A","B"];
         $this->frequencies = $this->getFrequencies();
         $this->modes = $this->getModes();
+        $this->urls = $this->getExampleSites();
     }
 
     public function getFrequencies() {
@@ -54,6 +56,20 @@ class Data {
             19 => "major blues",
             20 => "dominant pentatonic",
             21 => "blues"
+        ];
+    }
+
+    public function getExampleSites() {
+        return [
+            'github.com',
+            'apple.com',
+            'gmail.com',
+            'google.com',
+            'htc.com',
+            'microsoft.com',
+            'aoc.com',
+            'ikea.com',
+            'samsung.com'
         ];
     }
 }

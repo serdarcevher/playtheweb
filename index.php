@@ -8,6 +8,7 @@ $handler = new Handler();
 <head>
     <link rel="stylesheet" href="assets/element.css">
     <link rel="stylesheet" href="assets/spinners.css">
+    <link rel="stylesheet" href="assets/awesomplete.css">
 </head>
 <body>
     <div id="container">
@@ -17,7 +18,14 @@ $handler = new Handler();
         </h2>
 
         <form action="javascript:void(0);">
-            <input id="source" type="text" placeholder="Enter any publicly available web page URL" value="" />
+
+            <input id="source" class="awesomplete" 
+                   type="text" 
+                   placeholder="Enter any publicly available web page URL" 
+                   value=""
+                   data-minchars="1" 
+                   data-list="<?=implode(",", $handler->data->urls)?>"
+                   />
 
             <div style="display:inline-block">
                 <select id="tone-selector" class="selector" name="tone">
@@ -67,4 +75,5 @@ $handler = new Handler();
 </body>
 <script src="assets/time.js"></script>
 <script src="assets/functions.js"></script>
+<script src="assets/awesomplete.min.js"></script>
 </html>
