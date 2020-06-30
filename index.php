@@ -9,8 +9,8 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 <html lang="en">
 <head>
     <title>PlayTheWeb - Hear the sound of web!</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=6">
     <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
