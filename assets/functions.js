@@ -82,8 +82,15 @@ function calculateSizes() {
 }
 
 function displayMeta(song) {
+    document.getElementById('mode-selector').onChange = null;
+    document.getElementById('tone-selector').onChange = null;
+
     document.getElementById('mode-selector').value = song.mode;
     document.getElementById('tone-selector').value = song.tone;
+
+    document.getElementById('mode-selector').onChange = reflectToneAndModeChange();
+    document.getElementById('tone-selector').onChange = reflectToneAndModeChange();
+
     document.getElementById('song-info').innerHTML = song.tone + ' ' + song.mode;
     document.getElementById('total-time-span').innerHTML = pad(parseInt(totalTime/60)) + ':' + pad(totalTime%60);
 }
@@ -183,4 +190,11 @@ function playRandomSite() {
     let site = urls[Math.floor(Math.random() * urls.length)];
     document.getElementById('source').value = site;
     startPlaying();
+}
+
+function reflectToneAndModeChange() {
+    if (isPlaying) {
+        stopPlaying();
+        startPlaying();
+    }
 }

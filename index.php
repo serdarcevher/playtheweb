@@ -54,7 +54,7 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
             </div>
 
             <div style="display:inline-block;margin-top:10px;">
-                <select id="tone-selector" class="selector" name="tone">
+                <select id="tone-selector" class="selector" name="tone" onChange="reflectToneAndModeChange()">
                     <option value="">Change Tone</option>
                     <option value="">Auto</option>
                     <?php
@@ -64,7 +64,7 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
                     ?>
                 </select>
 
-                <select id="mode-selector" class="selector" name="mode">
+                <select id="mode-selector" class="selector" name="mode" onChange="reflectToneAndModeChange()">
                     <option value="">Change Mode</option>
                     <option value="">Auto</option>
                     <?php
