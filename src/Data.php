@@ -68,11 +68,13 @@ class Data {
             'htc.com',
             'microsoft.com',
             'aoc.com',
-            'ikea.com',
+            'firefox.com',
             'facebook.com',
             'twitter.com',
             'samsung.com',
             'mi.com',
+            'mozilla.com',
+            'sourceforge.net',
         ];
     }
 }
