@@ -46,17 +46,24 @@ async function loadSong(url) {
         .then(res => res.json()) // parse response as JSON (can be res.text() for plain response)
         .then(response => {
             // here you do what you want with response
+            if (response.error) {
+                handleError();
+                reject();
+            }
+
             song = response;
             resolve();
         })
         .catch(err => {
-            console.log(err);
-            alert("Something went wrong! Try a different URL.")
-            loading(false);
-            stopPlaying();
-            reject();
+            reject(err);
         });
     });
+}
+
+function handleError() {
+    alert("Something went wrong! Try a different URL.")
+    loading(false);
+    stopPlaying();
 }
 
 function prepareAudioContext() {
@@ -150,8 +157,10 @@ function play(song, element) {
 
 
 function stopPlaying() {
-    oscillator.stop();
-    oscillatorPedal.stop();
+    if (typeof(oscillator) !== "undefined") {
+       oscillator.stop();
+        oscillatorPedal.stop();     
+    }
     isPlaying = false;
     stopButton.style.display = 'none';
     startButton.style.display = "inline-block";

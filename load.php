@@ -27,7 +27,7 @@ try {
     }
 
     if (!$content) {
-        throw new Exception('Something went wrong. Try a different URL');
+        throw new Exception('Something went wrong. Try a different URL', 400);
     }
     
     echo json_encode($handler->run($content, $data['tone'], $data['mode']));
