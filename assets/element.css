@@ -118,3 +118,18 @@ h3 { font-size: 100%; }
 .awesomplete {
     min-width:300px;
 }
+
+#github-logo-link {
+    float:right;margin-top:-32px;z-index:2;
+}
+#github-logo-link img {
+    width:32px;height:32px;
+}
+
+#github-text-link {
+    float:right;
+}
+
+#github-text-link, #github-text-link:hover, #github-text-link:focus {
+    color:white;
+}

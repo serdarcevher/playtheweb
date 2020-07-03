@@ -10,11 +10,14 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
 <head>
     <title>PlayTheWeb - Hear the sound of web!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=6">
+    <link rel="stylesheet" href="<?=$base?>assets/element.css?v=7">
     <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
 <body>
+    <a id="github-logo-link" href="https://github.com/serdarcevher/playtheweb" target="_blank" id="github-link" alt="Go to Github repository" title="Go to Github repository">
+        <img src="<?=$base?>assets/github-mark.png"  />
+    </a>
     <div id="container">
         <h1>PlayTheWeb</h1>
         <h2>
@@ -81,6 +84,8 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
             <div style="font-style:italic;font-size:13px;">
                 Generated composition <span style="color:green">will be the same</span> as long as the inputted site's <span style="color:green">code remains the same.</span>
             </div>
+            <br /><br />
+            <a id="github-text-link" href="https://github.com/serdarcevher/playtheweb" target="_blank">How does it work? <img src="<?=$base?>assets/github-mark.png" style="width:16px;height:16px"  /></a>
 
         </form>
 
