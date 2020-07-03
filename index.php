@@ -11,15 +11,22 @@ $u = $_GET['u'] ?? '';
 <head>
     <title>PlayTheWeb - Hear the sound of web!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="og:title" content="Semi-random music generator using HTML source codes">
+    <meta name="twitter:title" content="Semi-random music generator using HTML source codes">
+    <meta property="og:description" content="Each CSS class in the HTML source code becomes a note in a composition">
+    <meta property="twitter:description" content="Each CSS class in the HTML source code becomes a note in a composition">
+    <meta property="og:image" content="<?=$base?>assets/preview.png">
+    <meta property="twitter:image" content="<?=$base?>assets/preview.png">
+
     <link rel="stylesheet" href="<?=$base?>assets/element.css?v=7">
     <link rel="stylesheet" href="<?=$base?>assets/spinners.css">
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
 <body>
     <!--<a id="github-logo-link" href="https://github.com/serdarcevher/playtheweb" target="_blank" id="github-link" alt="Go to Github repository" title="Go to Github repository">
-        <img src="<?=$base?>assets/github-mark.png"  />-->
-
-    </a>
+        <img src="<?=$base?>assets/github-mark.png"  />
+    </a>-->
     <div id="container">
         <h1>PlayTheWeb</h1>
         <h2>
@@ -87,7 +94,7 @@ $u = $_GET['u'] ?? '';
                 Generated composition <span style="color:green">will be the same</span> as long as the inputted site's <span style="color:green">code remains the same.</span>
             </div>
             <br /><br />
-            <a id="github-text-link" href="https://github.com/serdarcevher/playtheweb" target="_blank">How does it work? <img src="<?=$base?>assets/github-mark.png" style="width:16px;height:16px"  /></a>
+            <a id="github-text-link" href="https://github.com/serdarcevher/playtheweb" target="_blank">How does it work? <img src="<?=$base?>assets/github-mark.png" alt="See the code in Github" style="width:16px;height:16px"  /></a>
 
         </form>
 
