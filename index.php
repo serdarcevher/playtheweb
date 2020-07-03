@@ -3,7 +3,8 @@ require_once('init.php');
 
 use Sahtepetrucci\PlayTheWeb\Handler;
 $handler = new Handler();
-$base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/';
+$base = '//' . $_SERVER['HTTP_HOST'] . rtrim(strtok($_SERVER['REQUEST_URI'], '?'), '/') . '/';
+$u = $_GET['u'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +16,9 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
     <link rel="stylesheet" href="<?=$base?>assets/awesomplete.css">
 </head>
 <body>
-    <a id="github-logo-link" href="https://github.com/serdarcevher/playtheweb" target="_blank" id="github-link" alt="Go to Github repository" title="Go to Github repository">
-        <img src="<?=$base?>assets/github-mark.png"  />
+    <!--<a id="github-logo-link" href="https://github.com/serdarcevher/playtheweb" target="_blank" id="github-link" alt="Go to Github repository" title="Go to Github repository">
+        <img src="<?=$base?>assets/github-mark.png"  />-->
+
     </a>
     <div id="container">
         <h1>PlayTheWeb</h1>
@@ -29,7 +31,7 @@ $base = '//' . $_SERVER['HTTP_HOST'] . rtrim($_SERVER['REQUEST_URI'], '/') . '/'
             <input id="source" class="awesomplete" 
                    type="text" 
                    placeholder="Enter any URL (e.g. google.com)" 
-                   value=""
+                   value="<?=htmlspecialchars($u)?>"
                    autocapitalize="none"
                    data-minchars="1" 
                    data-list="<?=implode(",", $handler->data->urls)?>"
