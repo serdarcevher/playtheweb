@@ -51,7 +51,7 @@ async function loadSong(url) {
         })
         .catch(err => {
             console.log(err);
-            alert("Sorry, something went wrong!")
+            alert("Something went wrong! Try a different URL.")
             loading(false);
             stopPlaying();
             reject();
