@@ -89,15 +89,6 @@ function calculateSizes() {
 }
 
 function displayMeta(song) {
-    document.getElementById('mode-selector').onChange = null;
-    document.getElementById('tone-selector').onChange = null;
-
-    document.getElementById('mode-selector').value = song.mode;
-    document.getElementById('tone-selector').value = song.tone;
-
-    document.getElementById('mode-selector').onChange = reflectToneAndModeChange();
-    document.getElementById('tone-selector').onChange = reflectToneAndModeChange();
-
     document.getElementById('song-info').innerHTML = song.tone + ' ' + song.mode;
     document.getElementById('total-time-span').innerHTML = pad(parseInt(totalTime/60)) + ':' + pad(totalTime%60);
 }
@@ -107,6 +98,10 @@ async function startPlaying() {
     if (!url) {
         alert('You have to enter a URL');
         return;
+    }
+
+    if (isPlaying) {
+        stopPlaying();
     }
 
     await loadSong(url);
@@ -158,7 +153,7 @@ function play(song, element) {
 
 function stopPlaying() {
     if (typeof(oscillator) !== "undefined") {
-       oscillator.stop();
+        oscillator.stop();
         oscillatorPedal.stop();     
     }
     isPlaying = false;
@@ -194,16 +189,18 @@ function userCanInteract(bool) {
 function playRandomSite() {
     if (isPlaying) {
         stopPlaying();
+        document.getElementById('mode-selector').value = '';
+        document.getElementById('tone-selector').value = '';
     }
 
     let site = urls[Math.floor(Math.random() * urls.length)];
     document.getElementById('source').value = site;
+
     startPlaying();
 }
 
 function reflectToneAndModeChange() {
     if (isPlaying) {
-        stopPlaying();
         startPlaying();
     }
 }

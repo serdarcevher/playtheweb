@@ -105,7 +105,7 @@ $u = $_GET['u'] ?? '';
     let urls = <?=json_encode($handler->data->urls)?>;
 </script>
 <script src="<?=$base?>assets/time.js"></script>
-<script src="<?=$base?>assets/functions.js?v=3"></script>
+<script src="<?=$base?>assets/functions.js?v=4"></script>
 <script src="<?=$base?>assets/awesomplete.min.js"></script>
 
 </body>
