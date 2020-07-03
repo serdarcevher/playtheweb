@@ -90,6 +90,7 @@ function calculateSizes() {
 
 function displayMeta(song) {
     document.getElementById('song-info').innerHTML = song.tone + ' ' + song.mode;
+    document.getElementById('song-info').classList.add('note-' + song.tone.toLowerCase());
     document.getElementById('total-time-span').innerHTML = pad(parseInt(totalTime/60)) + ':' + pad(totalTime%60);
 }
 
@@ -160,6 +161,7 @@ function stopPlaying() {
     stopButton.style.display = 'none';
     startButton.style.display = "inline-block";
     document.getElementById('song-info').innerHTML = '';
+    document.getElementById('song-info').className = '';
 
     resetTime();
 }

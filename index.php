@@ -51,13 +51,12 @@ $u = $_GET['u'] ?? '';
                 <button type="button" id="random" class="action-button" onClick="playRandomSite()">Random Site</button>
             </div>
 
+            <div id="song-info"></div>
             <div id="music-container"></div>
 
             <div style="display:inline-block;margin-top:10px;">
 
                 <div id="song-state">
-
-                    <div id="song-info"></div>
 
                     <span><label id="minutes">00</label>:<label id="seconds">00</label> / </span>
                     <span id="total-time-span">00:00</span>

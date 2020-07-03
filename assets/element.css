@@ -2,10 +2,10 @@
 .note-c-sharp { background-color: #00f7a3; }
 .note-d { background-color: #005fec; }
 .note-d-sharp { background-color: #210ce7; color:silver !important; }
-.note-e { background-color: #750abc; }
+.note-e { background-color: #750abc; color: white !important;}
 .note-f { background-color: #3a0448; color: silver !important; }
 .note-f-sharp { background-color: #5d0a3e; }
-.note-g { background-color: #d80319; }
+.note-g { background-color: #d80319; color: white !important; }
 .note-g-sharp { background-color: #e6371b; }
 .note-g-sharp { background-color: #e6371b; }
 .note-a { background-color: #f77724; }
@@ -97,9 +97,16 @@ h3 { font-size: 100%; }
     display:inline-block;
 }
 #song-info {
-    display:inline-block;
-    margin:30px 0 0 0;
+    position:fixed;
+    top:0;right:0;
+    width:150px;
+    height:30px;
+    line-height:30px;
+    font-size:12px;
+    padding-left:10px;
     white-space: nowrap;
+    color:#1F1F1F;
+    opacity:0.8;
 }
 #start {
     background-color:green;
